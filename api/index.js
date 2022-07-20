@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const app = express();
 
-const authRoute = require("./routes/auth");
+// const authRoute = require("./routes/auth");
 const hotelsRoute = require("./routes/hotels");
 const roomsRoute = require("./routes/rooms");
 const usersRoute = require("./routes/users");
