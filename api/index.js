@@ -7,6 +7,7 @@ const authRoute = require("./routes/auth");
 const hotelsRoute = require("./routes/hotels");
 const roomsRoute = require("./routes/rooms");
 const usersRoute = require("./routes/users");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
@@ -25,13 +26,8 @@ mongoose.connection.on("disconnected", () => {
 
 //middlewares
 
-//? next()로 미들웨어가 잘 작동 하는지, 어느 API가 작동했는지 터미널에서 확인할 수 있다.
-// app.use((req, res, next) => {
-//   console.log("hi im a middleware!");
-//   next();
-// });
-
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/auth", authRoute);
 app.use("/hotels", hotelsRoute);
