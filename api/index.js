@@ -8,6 +8,7 @@ const hotelsRoute = require("./routes/hotels");
 const roomsRoute = require("./routes/rooms");
 const usersRoute = require("./routes/users");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ mongoose.connection.on("disconnected", () => {
 
 app.use(express.json());
 app.use(cookieParser());
+// app.use(cors());
 
 app.use("/auth", authRoute);
 app.use("/hotels", hotelsRoute);
