@@ -6,15 +6,16 @@ const {
   getHotel,
   getHotels,
 } = require("../controllers/hotel");
+const { vertifyAdmin } = require("../utils/verifyToken");
 
 const router = express.Router();
 
 //CREATE
-router.post("/", createHotel);
+router.post("/", vertifyAdmin, createHotel);
 //UPDATE
-router.put("/:id", updateHotel);
+router.put("/:id", vertifyAdmin, updateHotel);
 //DELETE
-router.delete("/:id", deleteHotel);
+router.delete("/:id", vertifyAdmin, deleteHotel);
 //GET
 router.get("/:id", getHotel);
 //GET ALL
