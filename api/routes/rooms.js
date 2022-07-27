@@ -11,6 +11,7 @@ const { verifyAdmin } = require("../utils/verifyToken");
 
 const router = express.Router();
 
+//? 토큰을 라우트에서 관리할 수 있다는 것을 배움
 //CREATE
 router.post("/:hotelid", verifyAdmin, createRoom);
 //UPDATE

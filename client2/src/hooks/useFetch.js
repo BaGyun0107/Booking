@@ -5,7 +5,7 @@ const useFetch = (url) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
+  //? data, loading, error 를 따로 빼서 관리하는 법을 알게되었다.
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
