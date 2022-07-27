@@ -1,4 +1,5 @@
 const Hotel = require("../models/Hotel");
+const Room = require("../models/Room");
 const createError = require("../utils/error");
 
 const createHotel = async (req, res, next) => {
@@ -61,7 +62,7 @@ const countByCity = async (req, res, next) => {
     const list = await Promise.all(
       cities.map((city) => {
         // return Hotel.find({ city: city }).length;
-        return Hotel.countDocuments({ city: city });
+        return Hotel.countDocuments({ city: city }); //? 윗줄과 내용이 동일하다. mongoDB에서 제공하는 countDocuments를 사용
       })
     );
     res.status(200).json(list);
@@ -90,6 +91,20 @@ const countByType = async (req, res, next) => {
   }
 };
 
+const getHotelRooms = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.findById(req.params.id);
+    const list = await Promise.all(
+      hotel.rooms.map((room) => {
+        return Room.findById(room);
+      })
+    );
+    res.status(200).json(list);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createHotel,
   updateHotel,
@@ -98,4 +113,5 @@ module.exports = {
   getHotels,
   countByCity,
   countByType,
+  getHotelRooms,
 };

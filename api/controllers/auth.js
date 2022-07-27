@@ -54,4 +54,16 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { register, login };
+const logout = async (res, req, next) => {
+  try {
+    res.cookie("accessToken", null, {
+      maxAge: 0,
+    });
+
+    return res.status(200).json({ message: "로그아웃 성공" });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { register, login, logout };

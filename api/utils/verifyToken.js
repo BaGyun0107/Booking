@@ -14,7 +14,7 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-const vertifyUser = (req, res, next) => {
+const verifyUser = (req, res, next) => {
   verifyToken(req, res, next, () => {
     if (req.user.id === req.params.id || req.user.isAdmin) {
       next();
@@ -24,7 +24,7 @@ const vertifyUser = (req, res, next) => {
   });
 };
 
-const vertifyAdmin = (req, res, next) => {
+const verifyAdmin = (req, res, next) => {
   verifyToken(req, res, next, () => {
     if (req.user.isAdmin) {
       next();
@@ -34,4 +34,4 @@ const vertifyAdmin = (req, res, next) => {
   });
 };
 
-module.exports = { verifyToken, vertifyUser, vertifyAdmin };
+module.exports = { verifyToken, verifyUser, verifyAdmin };

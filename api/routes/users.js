@@ -6,11 +6,7 @@ const {
   getUser,
   getUsers,
 } = require("../controllers/User");
-const {
-  verifyToken,
-  vertifyUser,
-  vertifyAdmin,
-} = require("../utils/verifyToken");
+const { verfyToken, verifyUser, verifyAdmin } = require("../utils/verifyToken");
 
 const router = express.Router();
 
@@ -27,12 +23,12 @@ const router = express.Router();
 // });
 
 //UPDATE
-router.put("/:id", vertifyUser, updateUser);
+router.put("/:id", verifyUser, updateUser);
 //DELETE
-router.delete("/:id", vertifyUser, deleteUser);
+router.delete("/:id", verifyUser, deleteUser);
 //GET
-router.get("/:id", vertifyUser, getUser);
+router.get("/:id", verifyUser, getUser);
 //GET ALL
-router.get("/", vertifyAdmin, getUsers);
+router.get("/", verifyAdmin, getUsers);
 
 module.exports = router;

@@ -33,6 +33,22 @@ const updateRoom = async (req, res, next) => {
     next(err);
   }
 };
+const updateRoomAvailability = async (req, res, next) => {
+  try {
+    await Room.updateOne(
+      { "roomNumbers._id": req.params.id },
+      {
+        $push: {
+          //? roomNumbers 배열 안에 있는 unavailableDates 배열에 넣기 위해 $를 쓴다.
+          "roomNumbers.$.unavailableDates": req.body.dates,
+        },
+      }
+    );
+    res.status(200).json("Room status has been updated");
+  } catch (err) {
+    next(err);
+  }
+};
 const deleteRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
   try {
@@ -70,4 +86,11 @@ const getRooms = async (req, res, next) => {
   }
 };
 
-module.exports = { createRoom, updateRoom, deleteRoom, getRoom, getRooms };
+module.exports = {
+  createRoom,
+  updateRoom,
+  deleteRoom,
+  getRoom,
+  getRooms,
+  updateRoomAvailability,
+};
