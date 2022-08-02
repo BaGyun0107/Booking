@@ -10,5 +10,3 @@
 
 ## BACK
 <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=Express&logoColor=white" width="150" height="50"/><img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white" width="150" height="50"/><img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white" width="150" height="50"/><img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logoColor=white" width="150" height="50"/><img src="https://img.shields.io/badge/AXIOS-A100FF?style=for-the-badge&logoColor=white" width="150" height="50"/>
-
-# 주요 기능별 시연 GIF
