@@ -2,32 +2,36 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import "./login.css";
+import "./signin.css";
 
-const Login = () => {
-  const [credentials, setCredentials] = useState({
-    username: undefined,
-    password: undefined,
-  });
-
+const Signin = () => {
   const { loading, error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const inputUserName = (e) => {
+    setUsername(e.target.value);
+  };
+  const inputPwd = (e) => {
+    setPassword(e.target.value);
   };
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    dispatch({ type: "LOGIN_START" });
-    try {
-      const res = await axios.post("/auth/login", credentials);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-      navigate("/");
-    } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
-    }
+  const handleClick = () => {
+    axios.post("/auth/signin", {
+      username: username,
+      password: password,
+    });
+    // .then((resp) =>
+    //   resp.data.message === "ok"
+    //     ? alert("회원가입 성공")
+    //     : alert("회원가입 실패")
+    // );
+    setUsername("");
+    setPassword("");
+    navigate("/");
   };
 
   const handleClickCancel = () => {
@@ -35,24 +39,24 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
+    <div className="signin">
       <div className="lContainer">
         <input
           type="text"
           placeholder="username"
-          id="username"
-          onChange={handleChange}
+          value={username}
+          onChange={inputUserName}
           className="lInput"
         />
         <input
           type="password"
           placeholder="password"
-          id="password"
-          onChange={handleChange}
+          value={password}
+          onChange={inputPwd}
           className="lInput"
         />
         <button disabled={loading} onClick={handleClick} className="lButton">
-          Login
+          Sign In
         </button>
         <button
           disabled={loading}
@@ -67,4 +71,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;

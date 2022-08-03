@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const createError = require("../utils/error");
 const jwt = require("jsonwebtoken");
 
-const register = async (req, res, next) => {
+const signin = async (req, res, next) => {
   try {
     //? 비밀번호 암호화
     var salt = bcrypt.genSaltSync(10);
@@ -11,7 +11,7 @@ const register = async (req, res, next) => {
 
     const newUser = new User({
       username: req.body.username,
-      email: req.body.email,
+      // email: req.body.email,
       password: hash,
     });
 
@@ -66,4 +66,4 @@ const logout = async (res, req, next) => {
   }
 };
 
-module.exports = { register, login, logout };
+module.exports = { signin, login, logout };

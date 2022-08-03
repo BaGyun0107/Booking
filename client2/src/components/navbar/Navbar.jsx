@@ -11,6 +11,10 @@ const Navbar = () => {
     navigator("login");
   };
 
+  const handleClickSignIn = () => {
+    navigator("signin");
+  };
+
   const handleClickLogout = async () => {
     try {
       const res = await axios.post("/logout");
@@ -35,7 +39,9 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="navItems">
-            <button className="navButton">Register</button>
+            <button className="navButton" onClick={handleClickSignIn}>
+              Sign In
+            </button>
             <button className="navButton" onClick={handleClick}>
               Login
             </button>
