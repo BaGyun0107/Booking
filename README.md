@@ -1,6 +1,4 @@
 # Booking
-개인 프로젝트
-배포는 현재 팀 프로젝트 배포상태라 진행하지 못했습니다.
 
 회고 : https://bagyun.tistory.com/37
 
